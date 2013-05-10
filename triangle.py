@@ -45,6 +45,8 @@ def subtract_path(triangle, row_n, col_n):
         for c,val in enumerate(sub_row):
             triangle[row_n+r][col_n+c] -= val
 
+    return triangle
+
 def print_triangle(triangle,f=sys.stdout):
     max_elts = len(triangle)
     max_valwidth = 0
