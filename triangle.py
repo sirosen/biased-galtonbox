@@ -1,9 +1,11 @@
+from __future__ import print_function, division
+
 def pascal(depth):
     if depth == 0:
         return []
     else:
         tri = [[1]]
-        for i in range(depth):
+        for i in range(depth-1):
             cur_row = tri[-1]
             l = len(cur_row)
             def new_val(i,maxindex):
