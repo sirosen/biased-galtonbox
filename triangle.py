@@ -2,11 +2,11 @@ from __future__ import print_function, division
 import sys
 
 def pascal(depth):
-    if depth == 0:
+    if depth < 0:
         return []
     else:
         tri = [[1]]
-        for i in range(depth-1):
+        for i in range(depth):
             cur_row = tri[-1]
             l = len(cur_row)
             def new_val(i,maxindex):
@@ -35,7 +35,7 @@ def subtract_path(triangle, row_n, col_n):
     if row_n > depth:
         raise Exception('Woah! We can\'t take things out of the triangle that are deeper than it!')
 
-    to_subtract = probability_triangle(pascal(depth - row_n))
+    to_subtract = probability_triangle(pascal(depth - row_n - 1))
     v = triangle[row_n][col_n]
     for sub_row in to_subtract:
         for i in range(len(sub_row)):
