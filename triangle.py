@@ -1,4 +1,5 @@
 from __future__ import print_function, division
+import sys
 
 def pascal(depth):
     if depth == 0:
@@ -43,3 +44,15 @@ def subtract_path(triangle, row_n, col_n):
     for r,sub_row in enumerate(to_subtract):
         for c,val in enumerate(sub_row):
             triangle[row_n+r][col_n+c] -= val
+
+def print_triangle(triangle,f=sys.stdout):
+    max_elts = len(triangle)
+    max_valwidth = 0
+    for row in triangle:
+        for v in row:
+            vwidth = len(str(v))
+            if vwidth > max_valwidth: max_valwidth = vwidth
+
+    width = (max_elts-1)*2 + max_elts*max_valwidth
+    for row in triangle:
+        print(('{:^%i}' % width).format('  '.join(('{:^%i}' % max_valwidth).format(str(x)) for x in row)),file=f)
