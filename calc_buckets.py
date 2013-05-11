@@ -16,4 +16,5 @@ while cur < top + epsilon:
 
 vals = [cdf(x) - cdf(x-bucket_size) for x in x_caps]
 
-print(vals)
+for i,x in enumerate(vals):
+    print('%i:%f' % (i,x))
