@@ -39,17 +39,20 @@ def find_slices(dist_triangle, buckets, margin):
     right_slice_points = []
     for row_index,row in enumerate(dist_triangle):
         left, right = True, True
-        while left or right:
+        while (left or right) and len(cur_buckets) > 0:
             left = right = False
-            col_index = closest_left_slice(cur_buckets[1], row, margin*cur_buckets[1])
+            col_index = closest_left_slice(cur_buckets[0], row, margin*cur_buckets[0])
             if col_index != -1:
                 left = True
                 left_slice_points.append((row_index,col_index))
-                remove_slice(dist_triangle, row_index, col_index)
-            col_index = closest_right_slice(cur_buckets[-1], row, margin*cur_buckets[-1])
-            if col_index != -1:
-                right = True
-                right_slice_points.append((row_index,col_index))
-                remove_slice(dist_triangle, row_index, col_index)
+                remove_slice(dist_triangle, row_index, col_index, 'l')
+                cur_buckets = cur_buckets[1:]
+            if len(cur_buckets) > 0:
+                col_index = closest_right_slice(cur_buckets[-1], row, margin*cur_buckets[-1])
+                if col_index != -1:
+                    right = True
+                    right_slice_points.append((row_index,col_index))
+                    remove_slice(dist_triangle, row_index, col_index, 'r')
+                    cur_buckets = cur_buckets[:-1]
 
     return (left_slice_points, right_slice_points)

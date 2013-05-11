@@ -47,12 +47,17 @@ def subtract_path(triangle, row_n, col_n):
 
     return triangle
 
-def remove_slice(triangle, row_n, col_n):
+def remove_slice(triangle, row_n, col_n, direction):
     rowlen = len(triangle[row_n])
     i = col_n
-    while i < rowlen:
-        subtract_path(triangle,row_n,i)
-        i += 1
+    if direction == 'r':
+        while i < rowlen:
+            subtract_path(triangle,row_n,i)
+            i += 1
+    else:
+        while i >= 0:
+            subtract_path(triangle,row_n,i)
+            i -= 1
 
     return triangle
 
