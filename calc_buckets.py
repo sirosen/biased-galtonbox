@@ -1,6 +1,6 @@
 from scipy.stats import chi2
 
-buckets = 30
+buckets = 26
 
 rv = chi2(3)
 cdf = rv.cdf

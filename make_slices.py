@@ -31,7 +31,7 @@ def closest_right_slice(target, distribution, epsilon):
     ps = prefix_sums(distribution[::-1])
     i = walk_to_val(target, ps, epsilon)
     if i == -1: return -1
-    else: return len(distribution) - i
+    else: return len(distribution) - i - 1
 
 def find_slices(dist_triangle, buckets, margin):
     cur_buckets = buckets[:]
